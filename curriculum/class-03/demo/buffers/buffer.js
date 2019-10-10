@@ -1,4 +1,7 @@
-'use strict';
+"use strict";
+
+// How to use command line arguments
+//console.log(process.argv.slice(2)[0]);
 
 let data = Buffer.from("Bald!");
 console.log(data);
@@ -7,7 +10,7 @@ console.log(data);
 console.log(data.toString());
 
 // This is the buffer turned into a hex string (notice the numbers match the buffer object)
-console.log(data.toString('hex'));
+console.log(data.toString("hex"));
 
 // This is the first byte of the buffer, in DECIMAL
 console.log(data[0]);
@@ -18,5 +21,4 @@ data[1] = 111;
 // Dig ... the new word
 console.log(data.toString());
 
-// ... we just changed the text by directly dinking with a single byte, not by touching the text itself!
-
+// ... we just changed the text by directly changing a single byte, not by touching the text itself!

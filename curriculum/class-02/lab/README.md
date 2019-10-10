@@ -51,7 +51,7 @@ This is a repeat of Lab 01, but using a class instead of functions. This is esse
 ## Before you begin
 
 ### Visualize the Application
-Evaluate the lab requirements and begin with drawing a [UML diagram](https://github.com/codefellows/seattle-javascript-401n14/tree/master/reference/submission-instructions/labs#compose-a-uml-or-processdata-flow-diagram-for-every-application). Having a solid visual understanding of the code you have/need and how it connects is critical to properly approaching the assignment.
+Evaluate the lab requirements and draw [UML diagrams](https://github.com/codefellows/seattle-javascript-401n14/tree/master/reference/submission-instructions/labs#compose-a-uml-or-processdata-flow-diagram-for-every-application) where necessary. Having a solid visual understanding of the code you have/need and how it connects is helpful to properly approaching assignments.
 
 ### Break Down the Assignment 
 Once you have a good visual and mental model of how the application works, break down the requirements. For each requirement, ask yourself the following questions:
@@ -75,32 +75,35 @@ For each part of this lab, configure your folder with the following files and di
     - Add your name in the `author` field (you can do this easily using `npm init`)
     - Create a `lint` script for running eslint (`eslint **/*.js`)
     - Create a `test` script for running tests
-    - If you have an `index.js`, create a `start` script to run that file
-* `/__tests__/` - contains unit tests
-* `/docs` - Where your documentation will reside
-    - `/docs/config`
-    - `/docs/config/jsdoc.config.json`
-        + JSDOC Config File
-        + Edit this for each lab if your folder structure is different
-    - `/docs/config/styleguidist.json`
-        + Contains settings for styleguide docs (For React Only)
+    - You do not need a `start` script at the root directory
+* `/vehicles/` - contains the application code for vehicles
+    - `package.json` - contains npm package config and scripts
+        + Add your name in the  `author` field 
+        + Create a `test`, `lint` and `start` script
+* `/list/` - contains the application code for list
+    - You do not have to add `package.json` or any other files to this directory from the starter code
+    - Just add JSDoc comments to the functions present in this code
+* `/validation/` - contains the application code for validation
+    - `package.json` - contains npm package config and scripts
+        + Add your name in the  `author` field 
+        + Create a `test`, `lint` and `start` script
 
 ### Submit to Canvas
-* Ensure that your `README.md` exists and has links to: 
+* Ensure that your `README.md` exists and has: 
     - A link to your TravisCI 
     - A link to pull request from your lab branch to your master branch in your forked repository
         + Keep this pull request open (**don't merge to master**) in case you need to resubmit your lab
-* Your `README` should include: 
     - Your module names for each lab project 
     - Instructions for how to run each lab project
     - Instructions for how to test each lab project
-    - Embedded UML diagram images (double check this works!)
+    - Embedded UML diagram image for Part 2 of Lab (double check this image shows up correctly!)
 
 Be sure to delete any placeholder content if you use `README-template.md`. Once you've ensured your `README.md` is correct, within Canvas submit a link to your `README.md`
 
-### Resubmits
+### Resubmitting
 * Your open pull request will be your gateway to resubmitting
 * Commit and push your changes in your lab branch, and they should be updated on the pull request
+* Only one resubmit allowed
 
 ## Grading Rubric
 

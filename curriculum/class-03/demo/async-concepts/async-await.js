@@ -1,46 +1,45 @@
-'use strict';
+"use strict";
 
-let request = (url) => {
-  return JSON.stringify({foo:'Bar'});
-};
+// async/await is just a nice layer on
+// top of Promises. It still uses promises in
+// the background
 
-async function getData(url) {
-  let result = await(request(url));
-  console.log(result);
+function apiCall(str) {
+	let random = Math.floor((Math.random() + 1) * 1000);
+
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			console.log(str);
+			resolve({ data: str });
+			// after resolve do .then()
+			// error checking
+			/* if (payload is an error)
+				reject(); 
+			if (payload is success)
+				resolve(payload.data); 
+			*/
+		}, random);
+	});
 }
 
-console.log( getData('http://www.google.com') ); // does nothing (actually logs the promise object);
-getData('http://www.google.com');  // code runs in the function and logs
+async function callApis() {
+	let data = await apiCall("A - async/await!");
+	console.log(data);
+	data = await apiCall(notAVariable);
+	console.log(data);
+	data = await apiCall("C - async/await!");
 
-
-// You can treat these like promises on the client side ...
-async function returnData(url) {
-  return await(request(url));
-}
-returnData('http://www.google.com')
-  .then( data => console.log("Got data back", data))
-  .catch( console.error );
-
-
-// Here's an example of looping until we get a good one
-let longRequest = (url) => {
-  let data = {
-    count:2,
-    results: ['a','b']
-  };
-
-  let rando = Math.floor(Math.random() * 99)+1;
-  return (rando < 50) ? data : false;
-
-};
-
-async function fetchRemoteData(url) {
-  let result = false;
-  while(! result) {
-    result = await longRequest(url);
-    console.log(result);
-  }
+	// returns a promise
 }
 
+let promise = callApis().catch(err => {
+	console.error("Error!");
+});
 
-fetchRemoteData('http://foo.com');
+console.log("I'm not gonna wait");
+
+
+
+
+
+
