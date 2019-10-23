@@ -6,7 +6,7 @@ In this lab, you'll be adding routes, documentation and tests to a functional ex
 
 ### People Model
 
-Finish the routes for the people model
+Finish the routes for the people model. Schema validation is not required.
 
 - Add the contents of the `PUT` operation for the people route
 - Add the contents of the `DELETE` operation for the people route
@@ -74,21 +74,16 @@ For each part of this lab, configure your folder with the following files and di
   - Create a `test` script for running tests
   - Create `start` script to run `index.js`
 - `/__tests__/` - contains unit tests
-- `/__mocks__/` - contains mock files
-- `/__data__/` - contains your MongoDB database information
 - `/docs/` - Where your documentation will reside (Swagger generation, no JSDocs generation needed)
-  - `swagger.json`
-  - `/docs/config`
+  - `/docs/config/swagger.js`
   - `/docs/config/jsdoc.config.json`
-    - JSDOC Config File
-    - Edit this for each lab if your folder structure is different
+  - Edit these for each lab if your folder structure is different
 
 ### Submit to Canvas
 
 - Ensure that your `README.md` exists and has:
   - A link to your TravisCI
   - A link to your deployed Heroku app
-  - A link to your SwaggerHub API Documentation
   - A link to pull request from your lab branch to your master branch in your forked repository
     - Keep this pull request open (**don't merge to master**) in case you need to resubmit your lab
   - Your module names for the application

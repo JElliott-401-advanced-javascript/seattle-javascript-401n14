@@ -8,25 +8,23 @@
 | Server-Side Web Application Framework | This is a category of WAF which is makes HTTP requests, database control, database management, and application URL mapping easier to code.                                                                                                                                                                                                                                                 | [1](https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Web_frameworks) / [2](https://medium.com/@shahroznawaz/best-backend-frameworks-to-build-your-next-web-application-2f89f08f34e3) |
 | Middleware                            | Middleware is software that acts as a bridge between an application and a database or server, especially on a network. Middleware functions can execute code, deal with asynchronous function responses, handle errors, and more!                                                                                                                                                          | [1](https://expressjs.com/en/guide/using-middleware.html)                                                                                                                                                  |
 | Express                               | Express is a fast, simplistic web application framework for Node.js, focused on "back-end" or "server-side" code.                                                                                                                                                                                                                                                                          | [1](https://www.youtube.com/watch?v=L72fhGm1tfE)                                                                                                                                                           |
-| Routing                               | ====                                                                                                                                                                                                                                                                                                                                                                                       |                                                                                                                                                                                                            |
+| Routing                               | Routing refers to how a server responds to a client request where there is a defined path and a specific request method (GET, POST, and so on). The server “listens” for requests that match the specified route(s) and method(s), and when it detects a match, it calls the defined callback function(s).                                                                                 | [1](https://expressjs.com/en/guide/routing.html) / [2](https://expressjs.com/en/starter/basic-routing.html)                                                                                                |
 | PATCH                                 | PATCH is another HTTP verb, similar to PUT, POST, etc. PATCH specifies that we want to update a piece of a record on a database, instead of updating everything in the record like PUT does                                                                                                                                                                                                | [1](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PATCH)                                                                                                                                       |
-| Port                                  | ====                                                                                                                                                                                                                                                                                                                                                                                       | ====                                                                                                                                                                                                       |
-| Domain Name System (DNS)              | ====                                                                                                                                                                                                                                                                                                                                                                                       | ====                                                                                                                                                                                                       |
+| Port                                  | A port is a communication endpoint, and it is always associated with a host. Port numbers range from 0 to 65535, with 0 - 1024 being reserved for privileged services. HTTP requests use the default port number "80" unless specified to do otherwise (as we do when we say `localhost:3000`)                                                                                             | [1](https://searchnetworking.techtarget.com/definition/port) / [2](<https://en.wikipedia.org/wiki/Port_(computer_networking)>)                                                                             |
+| Domain Name System (DNS)              | The Domain Name System is like a phonebook for the internet. DNS translates URLs such as "facebook.com" or "google.com" into IP addresses which the browser then loads resources from.                                                                                                                                                                                                     | [1](https://www.cloudflare.com/learning/dns/what-is-dns/) / [2](https://searchnetworking.techtarget.com/definition/domain-name-system)                                                                     |
 | Web Request Response Cycle (WRRC)     | The web request response cycle (WRRC) is simply a way of understanding how the internet works. Everything you do on the internet is a series of requests and responses; the browser sends GET requests to URLs in order to load HTML content, and web applications use additional HTTP requests to get and manage data. It is a formal way to describe what we have been already learning. | [1](https://medium.com/@jen_strong/the-request-response-cycle-of-the-web-1b7e206e9047) / [2](https://www.youtube.com/watch?v=eesqK59rhGA)                                                                  |
 
 ## Key Packages
 
-| Package                   | Description              | Download Link |
-| ------------------------- | ------------------------ | ------------- |
-| json-server               | Creates a web API server | ====          |
-| supertest                 | ====                     | ====          |
-| express                   | ====                     | ====          |
-| ejs                       | ====                     | ====          |
-| method-override           | ====                     | ====          |
-| express-swagger-generator | ====                     | ====          |
-| nodemon                   | ====                     | ====          |
-| node-fetch                | ====                     | ====          |
-| superagent                | ====                     | ====          |
+| Package                   | Description                                                                                                           | Link                                                           |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| json-server               | Creates a web API server                                                                                              | [npm](https://www.npmjs.com/package/json-server)               |
+| supertest                 | Helps us mock up a fake server for testing, based on the routes and content defined in our actual server              | [npm](https://www.npmjs.com/package/supertest)                 |
+| express                   | A package (actually, _middleware_) that makes it much easier and faster for us to create a server                     | [npm](https://www.npmjs.com/package/express)                   |
+| express-swagger-generator | Creates a swagger documention hub for our server, using a simple config object and JSDoc-like comments from your code | [npm](https://www.npmjs.com/package/express-swagger-generator) |
+| nodemon                   | Lets us rebuild and watch for changes in our server, so that we don't have to continually restart our server manually | [npm](https://www.npmjs.com/package/nodemon)                   |
+| node-fetch                | A Promise-based wrapper for HTML requests, so that we can easily write those requests in our JavaScript code          | [npm](https://www.npmjs.com/package/node-fetch)                |
+| superagent                | A Promise-based wrapper for HTML requests, so that we can easily write those requests in our JavaScript               | [npm](https://www.npmjs.com/package/superagent)                |
 
 ## Where We're Coming From
 
@@ -293,7 +291,7 @@ Both of these methods result in the same paths, however by using `Router()` we'r
 
 #### Error Handling Middleware
 
-While most middleware has parameters in the format `(req, res, next)`, error middleware has parameter in the format `(err, req, res, next)`. Error middleware is called automatically whenever our server `throw`s an error, or whenever we call `next()` with something in the parens: `next('this causes an error')`
+While most middleware has parameters in the format `(req, res, next)`, error middleware has parameter in the format `(err, req, res, next)`. Error middleware is called automatically whenever our server `throw`s an error, or whenever we call `next('failed')`.
 
 ```javascript
 app.get('/err-throw', (req, res, next) => {
@@ -361,7 +359,9 @@ We can use the node module `express-swagger-generator` to create an endpoint on 
 
 > These comments will _replace_ JSDoc comments in your server.
 
-Create a file called `swagger.js`, and build a new server that will host it (your live documentation should not be on the same port as your main application). For example, if your application is running on port 3000, you can set your live documentation to run on port 3100. This file should contain some configuration rules in a JavaScript object, which will then be used to generate your live documentation. Here's an example of a full `swagger.js` file:
+Create a file called `swagger.js`, and build a new server that will host it (your live documentation should not be on the same port as your main application). For example, if your application is running on port 3000, you can set your live documentation to run on port 3100. This file should contain some configuration rules in a JavaScript object, which will then be used to generate your live documentation.
+
+Here's an example of a full `swagger.js` file:
 
 ```javascript
 const express = require('express');
@@ -393,6 +393,19 @@ expressSwagger(options);
 app.listen(3100);
 ```
 
+Here's a description of the major items in this configuration that you might want to modify:
+
+| Key                | Description                                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------------------------- |
+| `info.description` | A description for your server API                                                                        |
+| `info.title`       | The title for your server API                                                                            |
+| `host`             | Where your main server (from `server.js`) is running                                                     |
+| `basePath`         | If the main page of your server is something other than `\`, you can specify a unique starting path here |
+| `produces`         | What kinds of data this API returns (json, img, html, etc)                                               |
+| `schemes`          | The kinds of protocols this API supports (http, https, ftp, etc)                                         |
+| `basedir`          | The base directory for your server files                                                                 |
+| `files`            | The path to your server files (for example `../../lib/`)                                                 |
+
 Within your actual server (`server.js`), document your routes, with properly formatted comments like this:
 
 ```javascript
@@ -417,7 +430,7 @@ router.get('/api/v1/:model', auth('read'), handleGetAll);
 router.post('/api/v1/:model', auth('create'), handlePost);
 ```
 
-Once done, navigating to your running server at `/api-docs/` on the port specified in your swagger.js configuration file will reveal your live running Open API documentation.
+Once done, navigating to your running server at `/api-docs/` on the port specified in your swagger.js configuration file will reveal your live running Open API documentation. You will only generate Swagger API endpoints in your documentation if you add JSDoc-like comments to each route in your `server.js` AND if you update the configuration `files` key-value.
 
 **This is required for every API server that you create**
 
