@@ -31,6 +31,40 @@ Finally, ensure that your connection to MongoDB happens in `server.js`: your cli
 
 Import your MongoDB data models (people and teams) into your `server.js` and wire them to each route so that our `get` requests are reading from our MongoDB database, and our `post`, `put`, and `delete` requests are editing our database.
 
+In your starter code, you should see the `/models/` folder, which has some of the files you'll need, though they might not all be complete. You will need to either replace the contents of this folder with your completed model files from lab 05, or you'll need to work on finishing the existing starter code files and adding to them. In order for this lab to be complete, you'll need the following files in your `/models/` folder:
+
+- `model.js`: This should be a class that defines the major functionality of your data models. It should have the following functions defined:
+  - `get(_id)`
+  - `getFromField(query)`
+  - `create(record)`
+  - `update(_id, record)`
+  - `delete(_id)`
+  - `count(query)`
+- `people.js`: Defines your People model
+- `people-schema.js`: Defines your People schema
+- `teams.js`: Defines your Teams model
+- `teams-schema.js`: Defines your Teams schema
+
+### Create Routes in Your Server
+
+Within your server, create routes that will display or modify data. The following routes should be operational:
+
+- `/`: prints out a simple "Homepage" message
+- `GET /people`: prints out all the data from the People model
+- `POST /people`: allows you to create a new person
+- `PUT /people`: allows you to edit a person
+- `DELETE /people`: allows you to delete a person
+- `GET /people/:id`: prints out the found person from the given id
+- `GET /people/:firstName-:lastName`: prints out the found person from the given first name and last name
+- `GET /people/count`: prints out the number of people (records) in the Peoples model
+- `GET /teams`: prints out all the data from the Teams model
+- `POST /teams`: allows you to create a new team
+- `PUT /teams`: allows you to edit a team
+- `DELETE /teams`: allows you to delete a team
+- `GET /teams/:id`: prints out the found team from the given id
+- `GET /teams/:name`: prints out the found team from the given name
+- `GET /teams/count`: prints out the number of teams (records) in the Teams model
+
 Just like in lab 07, modularize your people and teams routes so that they are in separate server files called `people-routes.js` and `teams-routes.js`.
 
 ### Middleware
@@ -72,7 +106,7 @@ As in the previous lab, provide full swagger documentation for your server.
 
 ## Assignment Submission Instructions
 
-For this lab, you will be required to deploy your app to Heroku.
+For this lab, you will be required to deploy your app to Heroku. You will NOT need to generate any Swagger documentation, though Swagger and JSDoc comments within your code are still required.
 
 ### Configure your repository
 
@@ -89,10 +123,6 @@ For each part of this lab, configure your folder with the following files and di
   - Create a `test` script for running tests
   - Create `start` script to run `index.js`
 - `/__tests__/` - contains unit tests
-- `/docs/` - Where your documentation will reside (Swagger generation, no JSDocs generation needed)
-  - `/docs/config/swagger.js`
-  - `/docs/config/jsdoc.config.json`
-  - Edit these for each lab if your folder structure is different
 
 ### Submit to Canvas
 
@@ -101,7 +131,6 @@ For each part of this lab, configure your folder with the following files and di
   - A link to your deployed Heroku app
   - A link to pull request from your lab branch to your master branch in your forked repository
     - Keep this pull request open (**don't merge to master**) in case you need to resubmit your lab
-  - Your module names for the application
   - Instructions for how to run your application
   - Instructions for how to test your application
   - Embedded UML diagram image
@@ -129,7 +158,7 @@ Be sure to delete any placeholder content if you use `README-template.md`. Once 
 - Modularity
   - `people-routes.js`
   - `teams-routes.js`
-- Swagger Docs Generation
+- Swagger Docs and JSDocs comments
 - Tests
 
 ### Code Quality:
