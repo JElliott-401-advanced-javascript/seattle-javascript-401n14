@@ -1,8 +1,9 @@
 'use strict';
 
 const mongoose = require('mongoose');
+const people = require('./people-schema.js');
 
-const teams = mongoose.Schema({
+const teamsSchema = mongoose.Schema({
   name: { type: String, required: true },
   color: {
     type: String,
@@ -12,4 +13,4 @@ const teams = mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('teams', teams);
+module.exports = mongoose.model('teams', teamsSchema);
